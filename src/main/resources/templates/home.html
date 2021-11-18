@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<p th:text="'Hello, ' + ${name} + '!'"/>-->
+
+<p th:text="'Hello, ' + ${user?.getName()} + '!'"/>
+
+<a href="/register"> go to register page </a>
+<hr>
+<a href="/addProduct">add product </a>
+<hr>
+<a href="/allProducts">all products </a>
+<hr>
+<a href="/cart">моя  корзина </a>
+</body>
+</html>
