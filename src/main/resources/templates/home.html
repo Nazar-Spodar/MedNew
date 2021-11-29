@@ -6,16 +6,23 @@
 </head>
 <body>
 
-<!--<p th:text="'Hello, ' + ${name} + '!'"/>-->
+<p th:text="'Hello, ' + ${name} + '!'"/>
+<p th:text="'Hello, ' + ${age} + '!'"/>
+
 
 <p th:text="'Hello, ' + ${user?.getName()} + '!'"/>
+
+<p th:text="'Hello, ' + ${user?.getEmail()} + '!'"/>
+<p th:text="'Hello, ' + ${user?.getPassword()} + '!'"/>
+<p th:text="'Hello, ' + ${user?.getAge()} + '!'"/>
+
+
 
 <a href="/register"> go to register page </a>
 <hr>
 <a href="/addProduct">add product </a>
 <hr>
 <a href="/allProducts">all products </a>
-<hr>
-<a href="/cart">моя  корзина </a>
+
 </body>
 </html>

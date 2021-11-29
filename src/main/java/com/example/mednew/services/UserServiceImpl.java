@@ -4,7 +4,7 @@ import com.example.mednew.dao.UserRepository;
 import com.example.mednew.dto.UserDto;
 import com.example.mednew.models.User;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
 
     private final UserRepository userRepository;
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("user is not adult");
         }
             User user = fromDto(userDto);
-        user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+//        user.setPassword(passwordEncoder().encode(userDto.getPassword()));
         user = userRepository.save(user);
 
         return toDto(user);
@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+
     @Override
     public List<UserDto> getAllusers() {
         return null;
@@ -66,6 +67,7 @@ public class UserServiceImpl implements UserService {
         user.setName(userDto.getName());
 //        user.setAdult(userDto.getAdult());
         user.setEmail(userDto.getEmail());
+        user.setAge(userDto.getAge());
         return user;
     }
 

@@ -13,6 +13,7 @@ public class User {
     private Boolean isAdult;
     private String email;
     private String password;
+    private Integer age;
 
 
 
@@ -54,5 +55,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
