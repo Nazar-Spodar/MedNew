@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<tr th:each="product: ${products}">
+    <td th:text="${product.getId()}"/>
+    <td th:text="${product.getName()}"/>
+    <td th:text="${product.getPrice()}"/>
+    <td th:text="${product.getAbout()}"/>
+    <a th:href="@{'/product/delete/'+ ${product.getId()}}">Delete</a>
+
+    <button th:id="${product.getId()}" onclick='addProductToCart(this.id)'>Додати в корзину</button>
+
+
+
+    <a th:href="@{'/product/'+ ${product.getId()}}">info</a>
+    <hr>
+</tr>
+
+
+<a href="/register"> go to register page </a>
+<a href="/home"> go to home page </a>
+
+<script type="text/javascript"
+        src="webjars/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function addProductToCart(productId) {
+
+        console.log(productId);
+
+        let request = {"productID": productId};
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/addProductToCart",
+            data: JSON.stringify(request),
+            dataType: 'json',
+            cache: false,
+            timeout: 600000,
+            success: function (data) {
+                console.log("SUCCESS : ", data);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
