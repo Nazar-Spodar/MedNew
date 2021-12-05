@@ -11,11 +11,11 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findAllByName(String name);       // Варіант 1
+//    List<Product> findAllByName(String name);       // Варіант 1
 
-    @Query("select p from Product p where p.name =:name")       // Варіант2
+    @Query("select p from Product p where p.name =:name")       // Варіант2 (Hibernate)
     List<Product> findCustom(@Param("name") String name);
 
-    @Query(value = "select * from products where name =:name ", nativeQuery = true)     // Варіант3(найкращий)
+    @Query(value = "select * from products where name =:name ", nativeQuery = true)     // Варіант3(найкращий) (SQL)
     List<Product> findCustomNative(@Param("name") String name);
 }
