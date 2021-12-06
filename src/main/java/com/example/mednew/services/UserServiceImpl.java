@@ -3,8 +3,8 @@ package com.example.mednew.services;
 import com.example.mednew.dao.UserRepository;
 import com.example.mednew.dto.UserDto;
 import com.example.mednew.models.User;
-import org.springframework.context.annotation.Bean;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,15 +14,12 @@ import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(BCryptPasswordEncoder bCryptPasswordEncoder, UserRepository userRepository) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userRepository = userRepository;
     }
-//
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
+private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final UserRepository userRepository;
 
@@ -37,7 +34,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("user is not adult");
         }
             User user = fromDto(userDto);
-//        user.setPassword(passwordEncoder().encode(userDto.getPassword()));
+        user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user = userRepository.save(user);
 
         return toDto(user);

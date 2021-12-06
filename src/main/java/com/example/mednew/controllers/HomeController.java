@@ -4,6 +4,8 @@ import com.example.mednew.models.User;
 import com.example.mednew.services.UserService;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +32,9 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homePage(Model model) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//        User user = userService.getUserByEmail(auth.getName());
-//        model.addAttribute("user", user);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.getUserByEmail(auth.getName());
+        model.addAttribute("user", user);
         return "home";
     }
 }
