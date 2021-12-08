@@ -1,9 +1,12 @@
 package com.example.mednew.configs;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Principle implements UserDetails {
     private String name;
@@ -11,16 +14,18 @@ public class Principle implements UserDetails {
     private String email;
     private String password;
     private Integer age;
+    private String role;
 
     public Principle() {
     }
 
-    public Principle(String name, Boolean isAdult, String email, String password, Integer age) {
+    public Principle(String name, Boolean isAdult, String email, String password, Integer age, String role) {
         this.name = name;
         this.isAdult = isAdult;
         this.email = email;
         this.password = password;
         this.age = age;
+        this.role = role;
     }
 
     @Override
@@ -30,7 +35,9 @@ public class Principle implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> list = new ArrayList<>();
+        list.add(new SimpleGrantedAuthority(this.role));
+        return list;
     }
 
     @Override

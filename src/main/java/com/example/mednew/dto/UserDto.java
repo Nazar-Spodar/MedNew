@@ -1,5 +1,7 @@
 package com.example.mednew.dto;
 
+import java.util.Objects;
+
 public class UserDto {
     private Long id;
     private String name;
@@ -7,15 +9,17 @@ public class UserDto {
     private String email;
     private String password;
     private Integer age;
+    private String role;
 
 
-    public UserDto(Long id, String name, Boolean isAdult, String email, String password, Integer age) {
+    public UserDto(Long id, String name, Boolean isAdult, String email, String password, Integer age, String role) {
         this.id = id;
         this.name = name;
         this.isAdult = isAdult;
         this.email = email;
         this.password = password;
         this.age = age;
+        this.role = role;
     }
 
     public UserDto() {
@@ -69,6 +73,14 @@ public class UserDto {
         this.age = age;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
@@ -78,7 +90,7 @@ public class UserDto {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
+                ", role='" + role + '\'' +
                 '}';
     }
-
 }

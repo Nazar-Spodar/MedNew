@@ -14,8 +14,15 @@ public class User {
     private String email;
     private String password;
     private Integer age;
+    private String role;
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getPassword() {
         return password;
@@ -63,5 +70,18 @@ public class User {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", isAdult=" + isAdult +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

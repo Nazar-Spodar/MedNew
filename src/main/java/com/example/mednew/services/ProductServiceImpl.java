@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    //    private final ProductRepository productRepository;
+
     private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -43,5 +43,10 @@ public class ProductServiceImpl implements ProductService {
         Product product = productRepository.getById(id);
         BeanUtils.copyProperties(product, productDto);
         return productDto;
+    }
+
+    @Override
+    public void delete(Long id) {
+        productRepository.deleteById(id);
     }
 }

@@ -24,7 +24,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     private Principle getByUser(User user) {
-        return new Principle(user.getName(), user.getAdult(), user.getEmail(), user.getPassword(), user.getAge());
+        return new Principle(user.getName(), user.getAdult(), user.getEmail(), user.getPassword(), user.getAge(), user.getRole());
     }
 
 //    private UserDetails buildUserForAuthentication(User user, List<SimpleGrantedAuthority> authorities) {

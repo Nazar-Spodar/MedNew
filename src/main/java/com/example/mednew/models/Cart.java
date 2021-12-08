@@ -17,10 +17,6 @@ public class Cart {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-//    @ManyToOne
-//    @JoinColumn(name = "product_id", referencedColumnName = "id")
-//    private Product product;
-
 
     public Long getId() {
         return id;

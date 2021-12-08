@@ -19,10 +19,9 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     private final UserRepository userRepository;
-
 
     @Override
     public UserDto saveUser(UserDto userDto) {
@@ -33,7 +32,14 @@ private final BCryptPasswordEncoder bCryptPasswordEncoder;
         if (userDto.getAge() < 21) {
             throw new RuntimeException("user is not adult");
         }
-            User user = fromDto(userDto);
+
+        User byEmail = userRepository.findByEmail(userDto.getEmail());      // Щоб не було однакових email
+        if (Objects.nonNull(byEmail)){
+            throw new RuntimeException("email already exists");
+        }
+
+        User user = fromDto(userDto);
+        user.setRole("USER");
         user.setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
         user = userRepository.save(user);
 
